@@ -1,4 +1,5 @@
 import com.sun.deploy.security.SelectableSecurityManager;
+import java.util.ArrayList;
 
 public class SinglyList<T> extends Object {
 	public Node<T> head;
@@ -141,8 +142,50 @@ public class SinglyList<T> extends Object {
 		}
 		this.head.next=front;
 	}
+	public boolean equals(Object anObject)
+	{
+		String str=this.toString();
+		String str2=anObject.toString();
+		return str.equalsIgnoreCase(str2);
+	}
+	public int compareTo(Object anObject)
+	{
+		String str=this.toString();
+		String str2=anObject.toString();
+		if (str.compareTo())
+	}
+	public Node<T> Merge(SinglyList list2)
+	{
+		Node<T> p,q,t,s;
+		p=this.head.next;
+		t=this.head;
+		q=list2.head.next;
+		s=q.next;
+		if (p==null)
+		{
+			return (list2.head);
+		}
+		if (q==null)
+		{
+			return (this.head);
+		}
+		while (p!=null && q!=null)
+		{
+			if (p.data.equals(q.data)) {
+				p = p.next;
+				q = q.next;
+				t = t.next;
+
+				if (s == null) {
+					break;
+				} else {
+					s = s.next;
+				}
+			}else if (p.data.)
+		}
+	}
 	public static void main(String[] args) {
-		String[] value = { "a" ,"b","C","D"};
+		String[] value = { "1","2","3","4"};
 		SinglyList<String> seq1 = new SinglyList<String>(value);
 		System.out.println("Ô­Êý×é"+seq1.toString());
 //		seq1.set(3,"jiahui");
