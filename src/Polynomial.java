@@ -1,8 +1,8 @@
-public class Polynomial<T>  {
-    public T coefficient;
-    public T variable;
-    public Polynomial<T> next;
-    public Polynomial(T coefficient,T variable,Polynomial<T> next)
+public class Polynomial  {
+    public Object coefficient;
+    public Object variable;
+    public Polynomial next;
+    public Polynomial(Object coefficient, Object variable,Polynomial next)
     {
         this.coefficient=coefficient;
         this.variable=variable;

@@ -1,32 +1,107 @@
-public class PolynomialList<T>
-{
-    public Polynomial<T> head;
-    public PolynomialList()
-    {
-        this.head=new Polynomial<T>();
-    }
-    public PolynomialList(T[][] values)
-    {
-        this();
-        Polynomial<T> rear=this.head;
-        for(int i=0;i<values.length;i++)
-        {
-            if(values[i]!=null)
-                rear.next=new Polynomial<T>(values[i][0],values[i][1],null);
-            rear=rear.next;
-        }
-    }
-    public String toString()
-    {
-        String str=this.getClass().getName()+"(";
-        for(Polynomial<T> p=this.head.next;p!=null;p=p.next)
-            str +=p.coefficient.toString()+p.variable.toString();
-        return str+")";
+import java.lang.Comparable;
+public class PolynomialList extends Object {
+    public Polynomial head;
+
+    public PolynomialList() {
+        this.head = new Polynomial();
     }
 
+    public PolynomialList(Object[][] values) {
+        this();
+        Polynomial rear = this.head;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] != null)
+                rear.next = new Polynomial(values[i][0], values[i][1], null);
+            rear = rear.next;
+        }
+    }
+
+    public String toString() {
+        String str = "(";
+        for (Polynomial p = this.head.next; p != null; p = p.next) {
+            String addition;  //加法符号
+            if (p != this.head.next && (Integer) p.coefficient > 0) {
+                addition = "+";
+            } else {
+                addition = "";
+            }
+            if ((Integer) p.coefficient==1) {
+                str +=addition +p.variable.toString();
+            }else if ((Integer) p.coefficient==-1)
+            {
+                str +="-"+p.variable.toString();
+            }
+            else
+            {
+                str += addition + p.coefficient.toString() + p.variable.toString();
+            }
+        }
+        return str + ")";
+    }
+
+    public void Add(Polynomial list1, Polynomial list2) {
+        list1.coefficient = (Integer) list1.coefficient + (Integer) list2.coefficient;
+    }
+
+    public PolynomialList PolynomialAddAndSubtract(String Symbol,PolynomialList list2)
+    {
+        Polynomial p, q, s,t;
+        t=this.head;
+        p = this.head.next;
+        q = list2.head.next;
+        if (p == null) {
+            return (list2);
+        }
+        if (q == null) {
+            return (this);
+        }
+        if (Symbol.equals("-"))  //判断加减法
+        {
+            while (q!=null)  //减法去括号并求list2数组全部系数的相反数
+            {
+                q.coefficient=(Integer)q.coefficient*-1;
+                q=q.next;
+            }
+        }
+        q=list2.head.next;   //重置q为第一个节点
+        while (p != null && q != null) {
+            while (!p.variable.toString().equals(q.variable.toString()) && p.next != null) { //遍历this多项式寻找指数相同的节点
+                t=t.next;
+                p = p.next;
+            }
+            if (p.variable.toString().equals(q.variable.toString())) {    //如果指数相同则相加
+                Add(p, q);
+                if ((Integer) p.coefficient==0)  //如果系数为0则删除此单项式
+                {
+                    t.next=t.next.next;
+                    p = this.head.next;
+                }else {
+                    p = this.head.next;
+                    t=this.head;
+                }
+                q=q.next;
+            } else if (p.next==null)    //如果遍历完毕仍未找到相同系数的单项式则将此单项式插入this链表后方
+            {
+                s=q.next;
+                q.next = null;
+                p.next=q;
+                q=s;
+                p = this.head.next;
+                t=this.head;
+            }
+        }
+        return this;
+    }
     public static void main(String[] args) {
-        Object[][] number1={{4,"x^2"},{-7,"x^3"}};
-        PolynomialList<Object> num1=new PolynomialList<Object>(number1);
+        Object[][] number1={{7,"x^2"},{7,"x^3"},{-8,"x^4"}};
+        Object[][] number2={{7,"x^2"},{7,"x^3"},{7,"x^4"},{25,"x^5"},{28,"x^6"},{28,"x^7"}};
+        Object[][] number3={{1,"x^2"}};
+        PolynomialList num1=new PolynomialList(number1);
+        PolynomialList num2=new PolynomialList(number2);
+        PolynomialList num3=new PolynomialList(number3);
+        System.out.println(num3.toString());
         System.out.println(num1.toString());
+        System.out.println(num2.toString());
+        System.out.println(num1.PolynomialAddAndSubtract("+",num2).toString());
     }
 }

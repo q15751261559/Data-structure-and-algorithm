@@ -236,7 +236,6 @@ public class SinglyList<T extends Comparable> extends Object {
 				z.next=t.next;
 				t.next=z;
 				t = z.next;
-
 				if (s == null) {
 					break;
 				} else {
