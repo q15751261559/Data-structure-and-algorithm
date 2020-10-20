@@ -6,12 +6,14 @@ public class PolynomialList extends Object {
         this.head = new Polynomial();
     }
 
-    public PolynomialList(Object[][] values) {
+    public PolynomialList(Object[] values) {
         this();
         Polynomial rear = this.head;
         for (int i = 0; i < values.length; i++) {
+            String spl1[]=values[i].toString().split(" ");
+//            System.out.println(spl1[0]);
             if (values[i] != null)
-                rear.next = new Polynomial(values[i][0], values[i][1], null);
+                rear.next = new Polynomial(Integer.parseInt(spl1[0]), spl1[1], null);
             rear = rear.next;
         }
     }
@@ -92,16 +94,49 @@ public class PolynomialList extends Object {
         }
         return this;
     }
+    public static int Recursion(int n)
+    {
+        if (n==1)
+            return 1;
+        return Recursion(n-1)*n;
+    }
+    public static int Recursion1(int n)
+    {
+        if (n==1)
+            return 1;
+        int i=n;
+        while (i>1)
+        {
+            n=n*(i-1);
+            i--;
+        }
+        return n;
+    }
+    public static int Recursion2(int n)
+    {
+        if (n==1)
+            return 1;
+        int i=n;
+        while (i<5)
+        {
+            n=n*(i+1);
+            i++;
+        }
+        return n;
+    }
     public static void main(String[] args) {
-        Object[][] number1={{7,"x^2"},{7,"x^3"},{-8,"x^4"}};
-        Object[][] number2={{7,"x^2"},{7,"x^3"},{7,"x^4"},{25,"x^5"},{28,"x^6"},{28,"x^7"}};
-        Object[][] number3={{1,"x^2"}};
-        PolynomialList num1=new PolynomialList(number1);
-        PolynomialList num2=new PolynomialList(number2);
-        PolynomialList num3=new PolynomialList(number3);
-        System.out.println(num3.toString());
-        System.out.println(num1.toString());
-        System.out.println(num2.toString());
-        System.out.println(num1.PolynomialAddAndSubtract("+",num2).toString());
+//        Object[] number1={"2 x^2","-3 x^3","4 x^4"};
+//        Object[] number2={"2 x^2","-3 x^3","4 x^4"};
+////        String spl1[]=number1[1].toString().split(" ");
+////        System.out.println(spl1[0]);
+//        PolynomialList num1=new PolynomialList(number1);
+//        PolynomialList num2=new PolynomialList(number2);
+//        System.out.println(num1.toString());
+//        System.out.println(num2.toString());
+////        System.out.println(num1.PolynomialAddAndSubtract("+",num2).toString());
+        System.out.println(Recursion1(5));
+//        Recursion1(1);
+        System.out.println(Recursion1(5));
+
     }
 }

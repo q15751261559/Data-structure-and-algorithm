@@ -18,12 +18,26 @@ public class SinglyList<T extends Comparable> extends Object {
 			    rear=rear.next;
 		}
 	}
+
+	public boolean isEmpty() {
+		return this.head.next == null;
+	}
+
 	public String toString()
 	{
 		String str=this.getClass().getName()+"(";
 		for(Node<T> p=this.head.next;p!=null;p=p.next)
 			str +=p.data.toString()+(p.next!=null?",":"");
 		return str+")";
+	}
+
+	public T get(int i)
+	{
+		Node<T> p = this.head.next;
+		for (int j = 0; p != null && j < i; j++) {
+			p = p.next;
+		}
+		return (i >= 0 && p != null) ? p.data : null;
 	}
 
 	public int size() {
@@ -58,6 +72,21 @@ public class SinglyList<T extends Comparable> extends Object {
 				throw new NullPointerException("³¬³ö·¶Î§");
 			}
 		}
+	}
+
+	public Node<T> insert(int i, T x) {
+		if (x == null)
+			throw new NullPointerException("x==null");
+		Node<T> front = this.head;
+		for (int j = 0; front.next != null && j < i; j++) {
+			front = front.next;
+		}
+		front.next = new Node<T>(x, front.next);
+		return front.next;
+	}
+
+	public Node<T> insert(T t) {
+		return insert(java.lang.Integer.MAX_VALUE, t);
 	}
 
 	public Node<T> search(T key)

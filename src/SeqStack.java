@@ -31,7 +31,10 @@ public final class SeqStack<T> {
 
     public static void main(String[] args)
     {
-        String[] value= {"A","B","C","D","E"};
-//        SeqStack<String> seq1=new SeqStack<String>(value);
+        SeqStack<String> num1=new SeqStack<>(24);
+        num1.push("1");
+        num1.push("2");
+        num1.push("3");
+        System.out.println(num1.toString());
     }
 }
