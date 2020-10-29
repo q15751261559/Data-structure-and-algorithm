@@ -117,16 +117,58 @@ public String toString()
 		str +=","+this.element[i].toString();
 	return str+")";
 }
+
+	public int BinarySearch(T key,int i)
+	{
+		int k=0;
+		int j=(k+i)/2;
+		while (!key.equals(this.element[j]))
+		{
+			if ((Integer)key<(Integer) this.element[j])
+			{
+				i=j;
+				j=(k+j)/2;
+			}
+			if((Integer)key>(Integer) this.element[j])
+			{
+				k=j;
+				j=(k+i)/2;
+			}
+			if (j==i-1&&(Integer)key!=(Integer) this.element[j])
+			{
+				break;
+			}
+		}
+		if (key.equals(this.element[j]))
+		{
+			return j;
+		}else
+		{
+			return -1;
+		}
+	}
 public static void main(String[] args) {
-	String[] values= {"A","B","C","D","E"};
-	SeqList<String> lista=new SeqList<String>(values);
+//	String[] values= {"A","B","C","D","E"};
+//	SeqList<String> lista=new SeqList<String>(values);
+//	System.out.println("数组"+lista.toString());
+//	lista.insert("8889");
+//	System.out.println("插入"+lista.toString());
+//	lista.remove(1);
+//	System.out.println("删除"+lista.toString());
+//	lista.remove("8889");
+//	System.out.println("删除值之后"+lista.toString());
+	Integer[] num=new Integer[100];
+	int j=0;
+	for (int i=0;i<100;i++)
+	{
+		if (i%2==1) {
+			num[i] = i + 1;
+			j++;
+		}
+	}
+	SeqList<Integer> lista=new SeqList<>(num);
 	System.out.println("数组"+lista.toString());
-	lista.insert("8889");
-	System.out.println("插入"+lista.toString());
-	lista.remove(1);
-	System.out.println("删除"+lista.toString());
-	lista.remove("8889");
-	System.out.println("删除值之后"+lista.toString());
+	System.out.println("数组下标为"+lista.BinarySearch(77,j));
 }
 
 }
