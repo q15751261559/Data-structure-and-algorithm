@@ -127,7 +127,7 @@ public String toString()
 			if ((Integer)key<(Integer) this.element[j])
 			{
 				i=j;
-				j=(k+j)/2;
+				j=(k+i)/2;
 			}
 			if((Integer)key>(Integer) this.element[j])
 			{
