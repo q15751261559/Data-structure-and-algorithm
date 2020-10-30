@@ -316,8 +316,8 @@ public class SinglyList<T extends Comparable> extends Object {
 		SinglyList<Integer> num2=new SinglyList<>(number2);
 		System.out.println("一数组"+num1.toString());
 		System.out.println("二数组"+num2.toString());
-//		num1.Merge1(num2);
-//		System.out.println("非重复合并链表"+num1.toString());
+		num1.Merge1(num2);
+		System.out.println("非重复合并链表"+num1.toString());
 		num1.Merge2(num2);
 		System.out.println("重复合并链表"+num1.toString());
 	}
