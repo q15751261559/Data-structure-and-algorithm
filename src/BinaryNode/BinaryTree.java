@@ -13,13 +13,12 @@ public class BinaryTree<T extends Comparable> {
     public void preorder()  //先根
     {
         preorder(this.root);
-        System.out.println();
     }
     public void preorder(BinaryNode<T> p)
     {
         if (p!=null)
         {
-            System.out.println(p.data.toString()+" ");
+            System.out.print(p.data.toString()+" ");
             preorder(p.left);
             preorder(p.right);
         }
@@ -45,14 +44,13 @@ public class BinaryTree<T extends Comparable> {
     public void inorder()  //中根
     {
         inorder(this.root);
-        System.out.println();
     }
     public void inorder(BinaryNode<T> p)
     {
         if (p!=null)
         {
             inorder(p.left);
-            System.out.println(p.data.toString()+" ");
+            System.out.print(p.data.toString()+" ");
             inorder(p.right);
         }
     }
@@ -60,7 +58,6 @@ public class BinaryTree<T extends Comparable> {
     public void postorder()  //后根
     {
         inorder(this.root);
-        System.out.println();
     }
     public void postorder(BinaryNode<T> p)
     {
@@ -68,7 +65,7 @@ public class BinaryTree<T extends Comparable> {
         {
             postorder(p.left);
             postorder(p.right);
-            System.out.println(p.data.toString()+" ");
+            System.out.print(p.data.toString()+" ");
         }
     }
 
@@ -136,26 +133,34 @@ public class BinaryTree<T extends Comparable> {
         return height;
     }
 
-    public T search(T i)  //查找
+    public BinaryNode<T> search(T i)  //查找
     {
         return search(this.root,i);
     }
-    public T search(BinaryNode<T> p ,T i)
-    {
+    public BinaryNode<T> search(BinaryNode<T> p ,T i) {
+        T value;
         if (p==null)
         {
             return null;
         }
-        search(p.left, i);
-        search(p.right, i);
-        if (i.equals(p.data))
-        {
-            return p.data;
-        }else {
-            return null;
+        else {
+            if (p.data.equals(i))
+            {
+                return p;
+            }else
+            {
+                if (search(p.left,i)!=null)
+                {
+                    return p;
+                }else if (search(p.right,i)!=null)
+                {
+                    return p;
+                }else
+                    return null;
+            }
         }
-
     }
+
 
     public static void main(String[] args) {
         String[] prelist={"A","B","D",null,"G",null,null,null,"C","E",null,"F","H"};
@@ -166,6 +171,6 @@ public class BinaryTree<T extends Comparable> {
         System.out.println("总节点数:"+bit.size());
         System.out.println("叶子节点数:"+bit.leaf());
         System.out.println(bit.height());
-        System.out.println(bit.search("B"));
+        System.out.println(bit.search("D"));
     }
 }
