@@ -1,6 +1,6 @@
 package BinaryNode;
 
-public class BinaryTree<T> {
+public class BinaryTree<T extends Comparable> {
     public BinaryNode<T> root;
     public BinaryTree()
     {
@@ -136,6 +136,27 @@ public class BinaryTree<T> {
         return height;
     }
 
+    public T search(T i)  //查找
+    {
+        return search(this.root,i);
+    }
+    public T search(BinaryNode<T> p ,T i)
+    {
+        if (p==null)
+        {
+            return null;
+        }
+        search(p.left, i);
+        search(p.right, i);
+        if (i.equals(p.data))
+        {
+            return p.data;
+        }else {
+            return null;
+        }
+
+    }
+
     public static void main(String[] args) {
         String[] prelist={"A","B","D",null,"G",null,null,null,"C","E",null,"F","H"};
         BinaryTree<String> bit=new BinaryTree<String>(prelist);
@@ -145,5 +166,6 @@ public class BinaryTree<T> {
         System.out.println("总节点数:"+bit.size());
         System.out.println("叶子节点数:"+bit.leaf());
         System.out.println(bit.height());
+        System.out.println(bit.search("B"));
     }
 }
