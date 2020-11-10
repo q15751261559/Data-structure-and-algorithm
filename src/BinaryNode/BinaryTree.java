@@ -135,30 +135,19 @@ public class BinaryTree<T extends Comparable> {
 
     public BinaryNode<T> search(T i)  //查找
     {
-        return search(this.root,i);
+        search(this.root,i);
+        return z;
     }
-    public BinaryNode<T> search(BinaryNode<T> p ,T i) {
-        T value;
-        if (p==null)
+    BinaryNode<T> z;
+    public void search(BinaryNode<T> p ,T i) {
+        if (p!=null)
         {
-            return null;
-        }
-        else {
             if (p.data.equals(i))
-            {
-                return p;
-            }else
-            {
-                if (search(p.left,i)!=null)
-                {
-                    return p;
-                }else if (search(p.right,i)!=null)
-                {
-                    return p;
-                }else
-                    return null;
-            }
+                z=p;
+            search(p.left,i);
+            search(p.right,i);
         }
+        System.out.println(z);
     }
 
 
@@ -171,6 +160,6 @@ public class BinaryTree<T extends Comparable> {
         System.out.println("总节点数:"+bit.size());
         System.out.println("叶子节点数:"+bit.leaf());
         System.out.println(bit.height());
-        System.out.println(bit.search("D"));
+        System.out.println(bit.search("C"));
     }
 }

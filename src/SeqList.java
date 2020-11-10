@@ -1,5 +1,5 @@
 
-public class SeqList<T>{
+public class SeqList<T> {
 protected int n;
 protected Object[] element;
 private static final int MIN_CARPACTIY=16;
