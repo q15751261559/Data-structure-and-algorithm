@@ -34,6 +34,29 @@ public class Matrix {
     }
     public int getColumns()
     {
-
+        return this.columns;
+    }
+    public int get(int i,int j)
+    {
+        if (i>=0&&i<this.rows&&j>=0&&j<this.columns)
+            return this.element[i][j];
+        throw new IndexOutOfBoundsException("i="+i+",j="+j);
+    }
+    public void set(int i,int j,int x) {
+        if (i >= 0 && i < this.rows && j >= 0 && j < this.columns)
+            this.element[i][j]=x;
+        else
+        throw new IndexOutOfBoundsException("i="+i+",j="+j);
+    }
+    public String toString()
+    {
+        String str=" 矩阵"+this.getClass().getName()+"("+this.rows+"x"+this.columns+"):\n";
+        for (int i=0;i<this.rows;i++) {
+            for (int j = 0; j < this.columns; j++) {
+                str += String.format("%6d", this.element[i][j]);
+            }
+            str+="\n";
+        }
+        return str;
     }
 }

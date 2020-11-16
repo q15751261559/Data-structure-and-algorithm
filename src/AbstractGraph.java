@@ -11,7 +11,7 @@ public abstract class AbstractGraph<T> implements Graph<T> {
     }
     public String toString()
     {
-        return "é¡¶ç‚¹é›†åˆï¼š"+this.vertexlist.toString()+"\n";
+        return "¶¥µã¼¯ºÏ£º"+this.vertexlist.toString()+"\n";
     }
     public T get(int i)
     {
