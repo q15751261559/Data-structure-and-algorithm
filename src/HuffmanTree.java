@@ -52,7 +52,7 @@ public class HuffmanTree {
             str += this.element[i].toString() + ",";
         }
         str += "\nHuffman±àÂë£º ";
-        for (int i = 0; i <this.charset.length(); i++) {
+        for (int i = 0; i <this.charset.length(); i++) { 
             str+=this.charset.charAt(i)+"£º"+huffmanCode(i)+"£¬";
         }
         return str;
@@ -95,8 +95,8 @@ public class HuffmanTree {
     public static void main(String[] args) {
         String text="AAAABBBCDDBBAAA";
         int[] weights={60,45,13,69,14,5,3};
-        HuffmanTree huftree=new HuffmanTree(weights);
-        System.out.println(huftree.toString());
+        HuffmanTree Huffmantree=new HuffmanTree(weights);
+        System.out.println(Huffmantree.toString());
         System.out.println();
         System.out.println();
     }

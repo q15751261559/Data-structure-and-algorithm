@@ -18,8 +18,4 @@ public class TirElement {
     {
         return "("+this.data+","+this.parent+","+this.left+","+this.right+")";
     }
-/*    public boolean isLeaf()
-    {
-        return this.left==-1 && this.right==-1;
-    }*/
 }
