@@ -30,4 +30,16 @@ public abstract class AbstractGraph<T> implements Graph<T> {
         return this.remove(this.search(key));
     }
     protected abstract int next(int i,int j);
+    public T remove(int i) {
+        return null;
+    }
+    public void remove(int i, int j) { }
+    public int weight(int i, int j) {
+        return 0;
+    }
+    public void DFSTraverse(int i) { }
+    public void BFSTraverse(int i) { }
+    public void minSpanTree() { }
+    public void shortestPath(int i) { }
+    public void shortestPath() { }
 }

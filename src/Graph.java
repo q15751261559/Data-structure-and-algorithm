@@ -1,6 +1,6 @@
 public interface Graph<T> {
     int vertexCount();
-    T get();
+    T get(int i);
     void set(int i,T x);
     int insert(T x);
     void insert(int i,int j,int w);

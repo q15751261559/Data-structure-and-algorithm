@@ -59,4 +59,19 @@ public class Matrix {
         }
         return str;
     }
+    public void setRowsColumns(int m,int n ){
+        if(m>0&&n>0){
+            if(m>this.element.length||n>this.element[0].length){
+                int [][] source=this.element;
+                this.element=new int[m*2][n*2];
+                for(int i=0;i<this.rows;i++)
+                    for(int j=0;j<this.columns;j++)
+                        this.element[i][j]=source[i][j];
+            }
+            this.rows=m;
+            this.columns=n;
+        }
+        else
+            throw new IllegalArgumentException("矩阵行列数不能<0,m="+m+",n="+n);
+    }
 }
