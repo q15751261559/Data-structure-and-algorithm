@@ -94,7 +94,7 @@ public class HuffmanTree {
     }
     public static void main(String[] args) {
         String text="AAAABBBCDDBBAAA";
-        int[] weights={60,45,13,69,14,5,3};
+        int[] weights={7,5,1,2};
         HuffmanTree Huffmantree=new HuffmanTree(weights);
         System.out.println(Huffmantree.toString());
         System.out.println();
