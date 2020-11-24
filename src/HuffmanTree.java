@@ -36,7 +36,7 @@ public class HuffmanTree {
     }
     private String huffmanCode(int i) {
         int n = 8;
-        char code[] = new char[n];
+        char[] code = new char[n];
         int child = i, parent = this.element[child].parent;
         for (i = n - 1; parent != -1; i--) {
             code[i] = (element[parent].left == child) ? '0':'1';
@@ -97,7 +97,5 @@ public class HuffmanTree {
         int[] weights={7,5,1,2};
         HuffmanTree Huffmantree=new HuffmanTree(weights);
         System.out.println(Huffmantree.toString());
-        System.out.println();
-        System.out.println();
     }
 }
