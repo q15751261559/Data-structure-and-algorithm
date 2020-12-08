@@ -147,7 +147,31 @@ public String toString()
 			return -1;
 		}
 	}
-public static void main(String[] args) {
+
+	public static void insertSort(Integer[] keys, boolean asc) {
+		for (int i = 1; i < keys.length; i++) {
+			int x = keys[i], j;
+			for (j = i - 1; j >= 0 && (asc ? x < keys[j] : x > keys[j]); j--) {
+				keys[j + 1] = keys[j];
+			}
+			keys[j + 1] = x;
+		}
+	}
+
+	public static void shellSort(Integer[] keys, boolean asc) {
+		for (int delta=keys.length/2;delta>0;delta/=2) {
+			for (int i = delta; i < keys.length; i++) {
+				int x = keys[i], j;
+				for (j = i - delta; j >= 0 && (asc ? x < keys[j] : x > keys[j]); j-=delta) {
+					keys[j + delta] = keys[j];
+				}
+				keys[j + delta] = x;
+			}
+		}
+	}
+
+
+	public static void main(String[] args) {
 //	String[] values= {"A","B","C","D","E"};
 //	SeqList<String> lista=new SeqList<String>(values);
 //	System.out.println("数组"+lista.toString());
@@ -157,18 +181,22 @@ public static void main(String[] args) {
 //	System.out.println("删除"+lista.toString());
 //	lista.remove("8889");
 //	System.out.println("删除值之后"+lista.toString());
-	Integer[] num=new Integer[100];
-	int j=0;
-	for (int i=0;i<100;i++)
-	{
-		if (i%2==1) {
-			num[i] = i + 1;
-			j++;
-		}
-	}
-	SeqList<Integer> lista=new SeqList<>(num);
-	System.out.println("数组"+lista.toString());
-	System.out.println("数组下标为"+lista.BinarySearch(77,j));
+//	Integer[] num=new Integer[100];
+//	int j=0;
+//	for (int i=0;i<100;i++)
+//	{
+//		if (i%2==1) {
+//			num[i] = i + 1;
+//			j++;
+//		}
+//	}
+//	SeqList<Integer> lista=new SeqList<>(num);
+//	System.out.println("数组"+lista.toString());
+//	System.out.println("数组下标为"+lista.BinarySearch(77,j));
+		Integer[] num1={1,5,3,5,7,2,1,3,9,8};
+		insertSort(num1,false);
+		SeqList<Integer> num2=new SeqList<Integer>(num1);
+		System.out.println(num2.toString());
 }
 
 }
