@@ -1,3 +1,4 @@
+import org.omg.PortableInterceptor.INACTIVE;
 
 public class SeqList<T> {
 protected int n;
@@ -169,8 +170,90 @@ public String toString()
 			}
 		}
 	}
-
-
+	static int z=0;
+	public static void quickSort(Integer[] keys)
+	{
+		quickSort(keys,0, keys.length-1);
+	}
+	private static void quickSort(Integer[] keys,int begin,int end)
+	{
+		if (begin>=0&&begin<end&&end<keys.length)
+		{
+			int i=begin,j=end;
+			int x=keys[i];
+			while (i!=j)
+			{
+				while (i<j&&keys[j]>=x)
+					j--;
+				if (i<j)
+					keys[i++]=keys[j];
+				while (i<j&&keys[i]<=x)
+					i++;
+				if (i<j)
+					keys[j--]=keys[i];
+			}
+			keys[i]=x;
+			z++;
+			SeqList<Integer> keys2=new SeqList<Integer>(keys);
+			System.out.println(z+":"+keys2.toString());
+			quickSort(keys,begin,j-1);
+			quickSort(keys,i+1,end);
+		}
+	}
+	private static void swap(Integer[]keys,int i,int j)
+	{
+		int temp=keys[j];
+		keys[j]=keys[i];
+		keys[i]=temp;
+	}
+	public static void bubbleSort(Integer[] keys)
+	{
+		boolean exchange=true;
+		for (int i=1;i<keys.length&&exchange;i++)
+		{
+			exchange=false;
+			for (int j=0;j<keys.length-i;j++)
+			{
+				if (keys[j]>keys[j+1])
+				{
+					swap(keys,j,j+1);
+					exchange=true;
+				}
+			}
+		}
+	}
+	public static void heapSort(Integer[] keys)
+	{
+		for (int i=keys.length/2-1;i>=0;i--) {
+			sift(keys, i, keys.length - 1);
+			SeqList<Integer> keys2 = new SeqList<Integer>(keys);
+			System.out.println(keys2.toString());
+		}
+		for (int i=keys.length-1;i>0;i--)
+		{
+			swap(keys,0,i);
+			sift(keys,0,i-1);
+		}
+	}
+	private static void sift(Integer[] keys,int parent,int end)
+	{
+		int child=2*parent+1;
+		int x=keys[parent];
+		while (child<=end)
+		{
+			if (child<end&&keys[child+1]<keys[child])
+				child++;
+			if (x>keys[child])
+			{
+				keys[parent]=keys[child];
+				parent=child;
+				child=2*parent+1;
+			}
+			else
+				break;
+		}
+		keys[parent]=x;
+	}
 	public static void main(String[] args) {
 //	String[] values= {"A","B","C","D","E"};
 //	SeqList<String> lista=new SeqList<String>(values);
@@ -193,10 +276,7 @@ public String toString()
 //	SeqList<Integer> lista=new SeqList<>(num);
 //	System.out.println("数组"+lista.toString());
 //	System.out.println("数组下标为"+lista.BinarySearch(77,j));
-		Integer[] num1={1,5,3,5,7,2,1,3,9,8};
-		insertSort(num1,false);
-		SeqList<Integer> num2=new SeqList<Integer>(num1);
-		System.out.println(num2.toString());
+		Integer[] num1={39,39,97,75,61,19,26,49};
+		heapSort(num1);
 }
-
 }
