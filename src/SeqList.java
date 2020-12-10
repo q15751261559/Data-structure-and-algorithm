@@ -226,13 +226,13 @@ public String toString()
 	{
 		for (int i=keys.length/2-1;i>=0;i--) {
 			sift(keys, i, keys.length - 1);
-			SeqList<Integer> keys2 = new SeqList<Integer>(keys);
-			System.out.println(keys2.toString());
 		}
 		for (int i=keys.length-1;i>0;i--)
 		{
 			swap(keys,0,i);
 			sift(keys,0,i-1);
+			SeqList<Integer> keys2 = new SeqList<Integer>(keys);
+			System.out.println(keys2.toString());
 		}
 	}
 	private static void sift(Integer[] keys,int parent,int end)
@@ -244,6 +244,38 @@ public String toString()
 			if (child<end&&keys[child+1]<keys[child])
 				child++;
 			if (x>keys[child])
+			{
+				keys[parent]=keys[child];
+				parent=child;
+				child=2*parent+1;
+			}
+			else
+				break;
+		}
+		keys[parent]=x;
+	}
+	public static void heapSort1(Integer[] keys)
+	{
+		for (int i=keys.length/2-1;i>=0;i--) {
+			sift1(keys, i, keys.length - 1);
+		}
+		for (int i=keys.length-1;i>0;i--)
+		{
+			swap(keys,0,i);
+			sift1(keys,0,i-1);
+			SeqList<Integer> keys2 = new SeqList<Integer>(keys);
+			System.out.println(keys2.toString());
+		}
+	}
+	private static void sift1(Integer[] keys,int parent,int end)
+	{
+		int child=2*parent+1;
+		int x=keys[parent];
+		while (child<=end)
+		{
+			if (child<end&&keys[child+1]>keys[child])
+				child++;
+			if (x<keys[child])
 			{
 				keys[parent]=keys[child];
 				parent=child;
