@@ -161,13 +161,13 @@ public class SinglyList<T extends Comparable> extends Object {
 	}
 	public  void Reverse2()     //三指针链表倒序
 	{
-		Node <T> p=this.head.next,succ=null,front=null;
+		Node <T> p=this.head.next,q=null,front=null;
 		while(p!=null)
 		{
-			succ=p.next;
+			q=p.next;
 			p.next=front;
 			front=p;
-			p=succ;
+			p=q;
 		}
 		this.head.next=front;
 	}
@@ -294,7 +294,87 @@ public class SinglyList<T extends Comparable> extends Object {
 		}
 		return this.head;
 	}
+//1
+	public void quChong(){
+		Node<T> p,q;
+		p=this.head.next;
+		while (p!=null)
+		{
+			q=p;
+			while (q.next!=null)
+			{
+				if (q.next.data.equals(p.data))
+				{
+					q.next=q.next.next;
+				}else
+				{
+					q=q.next;
+				}
+			}
+			p=p.next;
+		}
+	}
+//	2
+	public void hebing(SinglyList<T> list2){
+		Node<T> p,q,t;
+		q=list2.head.next;
+		while (q!=null)
+		{
+			t=q.next;
+			p=this.head.next;
+			while (p!=null)
+			{
+				if (p==this.head.next&&q.data.compareTo(p.data)<0)
+				{
+					q.next=p;
+					this.head.next=q;
+					break;
+				}
+				if (p.next==null)
+				{
+					p.next=q;
+					q.next=null;
+					break;
+				}
+				if ((q.data.compareTo(p.data)>0||q.data.equals(p.data))&&q.data.compareTo(p.next.data)<0)
+				{
+					q.next=p.next;
+					p.next=q;
+					break;
+				}
+				p=p.next;
+			}
+			q=t;
+		}
+	}
+	public void shanchu(T value)
+	{
+		Node<T> p,head;
+		head=this.head;
+		p=head.next;
+		while (p!=null)
+		{
+            if (p.data.equals(value))
+			{
+				head.next=p.next;
+			}
+            head=head.next;
+            if (head==null) {
+				break;
+			}
+            p=head.next;
+		}
+	}
 	public static void main(String[] args) {
+		Integer[] number1={1,1,1};
+		Integer[] number2={2,4,6,6,6,6};
+		SinglyList<Integer> num1=new SinglyList<>(number1);
+//		SinglyList<Integer> num2=new SinglyList<>(number2);
+		num1.quChong();
+		System.out.println(num1);
+//		num1.shanchu(11);
+//		num1.hebing(num2);
+//		System.out.println(num1);
 //		String[] value = { "1","2","3","4"};
 //		SinglyList<String> seq1 = new SinglyList<String>(value);
 //		System.out.println("原数组"+seq1.toString());
@@ -310,15 +390,14 @@ public class SinglyList<T extends Comparable> extends Object {
 //		System.out.println("数组"+seq1.toString());
 //		seq1.Reverse2();
 //		System.out.println("数组"+seq1.toString());
-		Integer[] number1={1,2,3,4517};
-		Integer[] number2={8,11,328,4517};
-		SinglyList<Integer> num1=new SinglyList<>(number1);
-		SinglyList<Integer> num2=new SinglyList<>(number2);
-		System.out.println("一数组"+num1.toString());
-		System.out.println("二数组"+num2.toString());
-		num1.Merge1(num2);
-		System.out.println("非重复合并链表"+num1.toString());
-		num1.Merge2(num2);
-		System.out.println("重复合并链表"+num1.toString());
+//		Integer[] number2={8,11,328,4517};
+//		SinglyList<Integer> num1=new SinglyList<>(number1);
+//		SinglyList<Integer> num2=new SinglyList<>(number2);
+//		System.out.println("一数组"+num1.toString());
+//		System.out.println("二数组"+num2.toString());
+//		num1.Merge1(num2);
+//		System.out.println("非重复合并链表"+num1.toString());
+//		num1.Merge2(num2);
+//		System.out.println("重复合并链表"+num1.toString());
 	}
 }
